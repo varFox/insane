@@ -7,7 +7,8 @@ window.addEventListener('DOMContentLoaded', function () {
 
   let mainSlider = require('./modules/mainSlider.js');
 
-  mainSlider();
+  mainSlider('.sidecontrol a', '.sidecontrol__controls a');
+  mainSlider('.moduleapp a', 'div.next', '.prev');
 
 
 });

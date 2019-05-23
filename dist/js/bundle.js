@@ -10890,18 +10890,18 @@ module.exports = g;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var mainSlider = function mainSlider() {
-  var arrows = document.querySelectorAll('.sidecontrol__controls a'),
-      logo = document.querySelector('.sidecontrol a');
+var mainSlider = function mainSlider(home, next, prev) {
+  var arrowsNext = document.querySelectorAll(next),
+      logo = document.querySelector(home);
 
   var _loop = function _loop(i) {
-    arrows[i].addEventListener('click', function (event) {
+    arrowsNext[i].addEventListener('click', function (event) {
       event.preventDefault();
-      i == arrows.length - 1 ? window.scrollTo(0, 0) : window.scrollTo(0, window.innerHeight * (i + 1));
+      i == arrowsNext.length - 1 ? window.scrollTo(0, 0) : window.scrollTo(0, window.innerHeight * (i + 1));
     });
   };
 
-  for (var i = 0; i < arrows.length; i++) {
+  for (var i = 0; i < arrowsNext.length; i++) {
     _loop(i);
   }
 
@@ -10909,6 +10909,23 @@ var mainSlider = function mainSlider() {
     event.preventDefault();
     window.scrollTo(0, 0);
   });
+
+  if (prev) {
+    (function () {
+      var arrowsPrev = document.querySelectorAll(prev);
+
+      var _loop2 = function _loop2(i) {
+        arrowsPrev[i].addEventListener('click', function (event) {
+          event.preventDefault();
+          i == 0 ? window.scrollTo(0, window.innerHeight * (arrowsPrev.length - 1)) : window.scrollTo(0, window.innerHeight * (i - 1));
+        });
+      };
+
+      for (var i = 0; i < arrowsPrev.length; i++) {
+        _loop2(i);
+      }
+    })();
+  }
 };
 
 module.exports = mainSlider;
@@ -10933,7 +10950,8 @@ window.addEventListener('DOMContentLoaded', function () {
 
   var mainSlider = __webpack_require__(/*! ./modules/mainSlider.js */ "./src/js/modules/mainSlider.js");
 
-  mainSlider();
+  mainSlider('.sidecontrol a', '.sidecontrol__controls a');
+  mainSlider('.moduleapp a', 'div.next', '.prev');
 });
 
 /***/ }),
