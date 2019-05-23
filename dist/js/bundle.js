@@ -10957,6 +10957,37 @@ module.exports = playVideo;
 
 /***/ }),
 
+/***/ "./src/js/modules/showUpSlider.js":
+/*!****************************************!*\
+  !*** ./src/js/modules/showUpSlider.js ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var showUpSlider = function showUpSlider() {
+  var showBtns = document.querySelector('.showup__info-btns'),
+      showCards = document.querySelector('.showup__content-card');
+  showBtns.addEventListener('click', function (event) {
+    var target = event.target;
+    if (target.classList.contains('slick-next')) bindSlides();
+    if (target.classList.contains('slick-prev')) bindSlides();
+  });
+
+  var bindSlides = function bindSlides() {
+    var activeCard = showCards.querySelector('.card-active');
+    var div = document.createElement('div');
+    div = activeCard;
+    showCards.children[0].remove();
+    showCards.appendChild(div);
+    div.classList.remove('card-active');
+    showCards.children[0].classList.add('card-active');
+  };
+};
+
+module.exports = showUpSlider;
+
+/***/ }),
+
 /***/ "./src/js/script.js":
 /*!**************************!*\
   !*** ./src/js/script.js ***!
@@ -10974,11 +11005,13 @@ window.addEventListener('DOMContentLoaded', function () {
   'use strict';
 
   var mainSlider = __webpack_require__(/*! ./modules/mainSlider.js */ "./src/js/modules/mainSlider.js"),
-      playVideo = __webpack_require__(/*! ./modules/playVideo.js */ "./src/js/modules/playVideo.js");
+      playVideo = __webpack_require__(/*! ./modules/playVideo.js */ "./src/js/modules/playVideo.js"),
+      showUpSlider = __webpack_require__(/*! ./modules/showUpSlider.js */ "./src/js/modules/showUpSlider.js");
 
   mainSlider('.sidecontrol a', '.sidecontrol__controls a');
   mainSlider('.sidecontrol a', 'div.next', '.prev');
   playVideo();
+  showUpSlider();
 });
 
 /***/ }),

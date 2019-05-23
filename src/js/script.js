@@ -6,11 +6,13 @@ window.addEventListener('DOMContentLoaded', function () {
   'use strict';
 
   let mainSlider = require('./modules/mainSlider.js'),
-      playVideo = require('./modules/playVideo.js');
+      playVideo = require('./modules/playVideo.js'),
+      showUpSlider = require('./modules/showUpSlider.js');
 
   mainSlider('.sidecontrol a', '.sidecontrol__controls a');
   mainSlider('.sidecontrol a', 'div.next', '.prev');
   playVideo();
+  showUpSlider();
 
 
 });

@@ -366,12 +366,14 @@ a:active {
   line-height: 38px;
   font-weight: 900;
   letter-spacing: -.56px;
-  margin-right: 43px
+  margin-right: 43px;
+  position: relative;
 }
 
 .showup__content-slider {
   position: relative;
-  width: 860px
+  width: 860px;
+  overflow: hidden;
 }
 
 .showup__content-slider .slick-prev {
@@ -420,6 +422,7 @@ a:active {
 
 .showup__content-slider .card {
   display: block;
+  float: left;
   width: 307px;
   height: 227px;
   border-radius: 8px;
@@ -2016,4 +2019,31 @@ a:active {
   top: auto;
   -webkit-transform: none;
   transform: none
+}
+.showup__btn {
+  border: 2px solid #fff;
+  opacity: .5;
+}
+.modules__info-btns .showup__btn:hover {
+  border: 2px solid #fff;
+  opacity: 1;
+}
+.modules__info-btns .showup__btn:hover svg path {
+  fill: #fff;
+}
+.showup__info-btns {
+  position: absolute;
+  bottom: 0;
+}
+.showup__content-card {
+  width: 3000px;
+}
+
+@keyframes moveSlides {
+	from {
+		margin-left: 0px;
+	}
+	to {
+		margin-left: 400px;
+	}
 }
