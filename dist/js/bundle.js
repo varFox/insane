@@ -10951,7 +10951,7 @@ window.addEventListener('DOMContentLoaded', function () {
   var mainSlider = __webpack_require__(/*! ./modules/mainSlider.js */ "./src/js/modules/mainSlider.js");
 
   mainSlider('.sidecontrol a', '.sidecontrol__controls a');
-  mainSlider('.moduleapp a', 'div.next', '.prev');
+  mainSlider('.sidecontrol a', 'div.next', '.prev');
 });
 
 /***/ }),
