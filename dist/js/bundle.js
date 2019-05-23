@@ -10969,19 +10969,26 @@ var showUpSlider = function showUpSlider() {
       showCards = document.querySelector('.showup__content-card');
   showBtns.addEventListener('click', function (event) {
     var target = event.target;
-    if (target.classList.contains('slick-next')) bindSlides();
-    if (target.classList.contains('slick-prev')) bindSlides();
-  });
 
-  var bindSlides = function bindSlides() {
-    var activeCard = showCards.querySelector('.card-active');
-    var div = document.createElement('div');
-    div = activeCard;
-    showCards.children[0].remove();
-    showCards.appendChild(div);
-    div.classList.remove('card-active');
-    showCards.children[0].classList.add('card-active');
-  };
+    if (target.classList.contains('slick-next')) {
+      var activeCard = showCards.querySelector('.card-active');
+      var div = document.createElement('div');
+      div = activeCard;
+      showCards.children[0].remove();
+      showCards.appendChild(div);
+      div.classList.remove('card-active');
+      showCards.children[0].classList.add('card-active');
+    }
+
+    if (target.classList.contains('slick-prev')) {
+      var _div = document.createElement('div');
+
+      _div = showCards.lastElementChild;
+      showCards.classList.remove('.card-active');
+      showCards.insertBefore(_div, showCards.children[0]);
+      showCards.children[0].classList.add('.card-active');
+    }
+  });
 };
 
 module.exports = showUpSlider;
