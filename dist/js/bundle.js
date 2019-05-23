@@ -10932,6 +10932,31 @@ module.exports = mainSlider;
 
 /***/ }),
 
+/***/ "./src/js/modules/playVideo.js":
+/*!*************************************!*\
+  !*** ./src/js/modules/playVideo.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var playVideo = function playVideo() {
+  var overlay = document.querySelector('.overlay');
+  document.body.addEventListener('click', function (event) {
+    var target = event.target;
+    if (target.classList.contains('play__circle') && !target.classList.contains('closed')) bindModal('flex', target.parentElement.dataset.url);
+    if (target.classList.contains('close')) bindModal('', 'none');
+  });
+
+  var bindModal = function bindModal(display, url) {
+    overlay.style.display = display;
+    overlay.querySelector('iframe').src = url;
+  };
+};
+
+module.exports = playVideo;
+
+/***/ }),
+
 /***/ "./src/js/script.js":
 /*!**************************!*\
   !*** ./src/js/script.js ***!
@@ -10948,10 +10973,12 @@ __webpack_require__(/*! formdata-polyfill */ "./node_modules/formdata-polyfill/f
 window.addEventListener('DOMContentLoaded', function () {
   'use strict';
 
-  var mainSlider = __webpack_require__(/*! ./modules/mainSlider.js */ "./src/js/modules/mainSlider.js");
+  var mainSlider = __webpack_require__(/*! ./modules/mainSlider.js */ "./src/js/modules/mainSlider.js"),
+      playVideo = __webpack_require__(/*! ./modules/playVideo.js */ "./src/js/modules/playVideo.js");
 
   mainSlider('.sidecontrol a', '.sidecontrol__controls a');
   mainSlider('.sidecontrol a', 'div.next', '.prev');
+  playVideo();
 });
 
 /***/ }),
