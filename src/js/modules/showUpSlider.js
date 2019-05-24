@@ -6,17 +6,17 @@ const showUpSlider = () => {
         
 
   showBtnNext.addEventListener('click', () => {
-      let activeCard = showCards.querySelector('.card-active');
-      let div = document.createElement('div');
-      div = activeCard;
-      
-      showCards.children[0].remove();
-      showCards.appendChild(div);
-      div.classList.remove('card-active');
-      showCards.children[0].classList.add('card-active'); 
+    let activeCard = showCards.querySelector('.card-active');
+    let div = document.createElement('div');
+    div = activeCard;
+    
+    showCards.children[0].remove();
+    showCards.appendChild(div);
+    div.classList.remove('card-active');
+    showCards.children[0].classList.add('card-active'); 
   });
   showBtnPrev.addEventListener('click', () => {
-    let activeCard = showCards.querySelector('.card-active');
+      let activeCard = showCards.querySelector('.card-active');
       let div = document.createElement('div');
       div = showCards.lastElementChild;
 
@@ -24,6 +24,7 @@ const showUpSlider = () => {
       showCards.insertBefore(div, showCards.children[0]);
       showCards.children[0].classList.add('card-active');
   });
+
 };
 
 module.exports = showUpSlider;

@@ -2039,11 +2039,9 @@ a:active {
   width: 3000px;
 }
 
-@keyframes moveSlides {
-	from {
-		margin-left: 0px;
-	}
-	to {
-		margin-left: 400px;
-	}
+.showup__content .card-active .card__title {
+  opacity: 1;
+}
+.showup__content .card-active .card__controls-arrow {
+  opacity: 1;
 }
