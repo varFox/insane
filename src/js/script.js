@@ -6,13 +6,22 @@ window.addEventListener('DOMContentLoaded', function () {
   'use strict';
 
   let mainSlider = require('./modules/mainSlider.js'),
-      playVideo = require('./modules/playVideo.js'),
-      showUpSlider = require('./modules/showUpSlider.js');
-
-  mainSlider('.sidecontrol a', '.sidecontrol__controls a');
-  mainSlider('.sidecontrol a', 'div.next', '.prev');
+      playVideo = require('./modules/playVideo.js');
+      
+  mainSlider('.sidecontrol a', '.sidecontrol__controls a'); 
   playVideo();
-  showUpSlider();
+  
+  if (location.pathname == '/') {
+    let showUpSlider = require('./modules/showUpSlider.js'),
+        linkSlide = require('./modules/linkSlide.js'),
+        clickToShow = require('./modules/clickToShow.js');
 
+    showUpSlider();
+    linkSlide();
+    clickToShow();
+  } else if (location.pathname == '/modules.html') {
+    mainSlider('.sidecontrol a', 'div.next', '.prev');
+  }
+  
 
 });

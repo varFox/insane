@@ -10883,6 +10883,157 @@ module.exports = g;
 
 /***/ }),
 
+/***/ "./src/js/modules/clickToShow.js":
+/*!***************************************!*\
+  !*** ./src/js/modules/clickToShow.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var clickToShow = function clickToShow() {
+  var officeroldData = {
+    1: {
+      'class': 'officer__card-item',
+      'elem': {
+        1: {
+          'class': 'card__counter',
+          'descr': '01'
+        },
+        2: {
+          'class': 'card__descr',
+          'descr': 'First step with some text and explanation'
+        }
+      }
+    },
+    2: {
+      'class': 'officer__card-item',
+      'elem': {
+        1: {
+          'class': 'card__counter',
+          'descr': '02'
+        },
+        2: {
+          'class': 'card__descr',
+          'descr': 'Second step with some text and explanation'
+        }
+      }
+    },
+    3: {
+      'class': 'officer__card-item',
+      'elem': {
+        1: {
+          'class': 'card__counter',
+          'descr': '03'
+        },
+        2: {
+          'class': 'card__descr',
+          'descr': 'Third step with some text and explanation'
+        }
+      }
+    }
+  },
+      officernewData = {
+    1: {
+      'class': 'officer__card-item',
+      'elem': {
+        1: {
+          'class': 'card__counter',
+          'descr': '01'
+        },
+        2: {
+          'class': 'card__descr',
+          'descr': 'First new step with some text and explanation'
+        }
+      }
+    },
+    2: {
+      'class': 'officer__card-item',
+      'elem': {
+        1: {
+          'class': 'card__counter',
+          'descr': '02'
+        },
+        2: {
+          'class': 'card__descr',
+          'descr': 'Second new step with some text and explanation'
+        }
+      }
+    },
+    3: {
+      'class': 'officer__card-item',
+      'elem': {
+        1: {
+          'class': 'card__counter',
+          'descr': '03'
+        },
+        2: {
+          'class': 'card__descr',
+          'descr': 'Third new step with some text and explanation'
+        }
+      }
+    }
+  };
+  var officerOld = document.querySelector('.officerold'),
+      officerNew = document.querySelector('.officernew'),
+      infoCards = document.querySelector('.difference__info-cards');
+  infoCards.addEventListener('click', function (event) {
+    var target = event.target;
+
+    if ((target.classList.contains('plus__content') || target.closest('.plus__content')) && target.closest('.officerold')) {
+      addCard(officeroldData, officerOld);
+    }
+
+    if ((target.classList.contains('plus__content') || target.closest('.plus__content')) && target.closest('.officernew')) {
+      addCard(officernewData, officerNew);
+    }
+  });
+
+  var addCard = function addCard(data, officer) {
+    var int = officer.children.length - 1;
+
+    if (int < 3) {
+      var div = document.createElement('div');
+      div.classList.add(data[1].class);
+      div.innerHTML = "<div class=\"".concat(data[int].elem[1].class, "\">").concat(data[int].elem[1].descr, "</div><div class=\"").concat(data[int].elem[2].class, "\">").concat(data[int].elem[2].descr, "</div>");
+      officer.insertBefore(div, officer.lastElementChild);
+    } else {
+      officer.lastElementChild.innerHTML = "<div class=\"".concat(data[int].elem[1].class, "\">").concat(data[int].elem[1].descr, "</div><div class=\"").concat(data[int].elem[2].class, "\">").concat(data[int].elem[2].descr, "</div>");
+    }
+  };
+};
+
+module.exports = clickToShow;
+
+/***/ }),
+
+/***/ "./src/js/modules/linkSlide.js":
+/*!*************************************!*\
+  !*** ./src/js/modules/linkSlide.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var linkSlide = function linkSlide() {
+  var itemsSlide = document.querySelector('.showup__content-slider'),
+      plus = document.querySelector('.plus');
+  itemsSlide.addEventListener('click', function (event) {
+    var target = event.target;
+
+    if (target.classList.contains('card') || target.closest('.card')) {
+      var card;
+      target.classList.contains('card') ? card = target : card = target.closest('.card');
+      card.href = "modules.html#".concat(card.classList[1].replace('card__', ''));
+    }
+  });
+  plus.addEventListener('click', function () {
+    window.location.href = '/modules.html';
+  });
+};
+
+module.exports = linkSlide;
+
+/***/ }),
+
 /***/ "./src/js/modules/mainSlider.js":
 /*!**************************************!*\
   !*** ./src/js/modules/mainSlider.js ***!
@@ -11008,13 +11159,22 @@ window.addEventListener('DOMContentLoaded', function () {
   'use strict';
 
   var mainSlider = __webpack_require__(/*! ./modules/mainSlider.js */ "./src/js/modules/mainSlider.js"),
-      playVideo = __webpack_require__(/*! ./modules/playVideo.js */ "./src/js/modules/playVideo.js"),
-      showUpSlider = __webpack_require__(/*! ./modules/showUpSlider.js */ "./src/js/modules/showUpSlider.js");
+      playVideo = __webpack_require__(/*! ./modules/playVideo.js */ "./src/js/modules/playVideo.js");
 
   mainSlider('.sidecontrol a', '.sidecontrol__controls a');
-  mainSlider('.sidecontrol a', 'div.next', '.prev');
   playVideo();
-  showUpSlider();
+
+  if (location.pathname == '/') {
+    var showUpSlider = __webpack_require__(/*! ./modules/showUpSlider.js */ "./src/js/modules/showUpSlider.js"),
+        linkSlide = __webpack_require__(/*! ./modules/linkSlide.js */ "./src/js/modules/linkSlide.js"),
+        clickToShow = __webpack_require__(/*! ./modules/clickToShow.js */ "./src/js/modules/clickToShow.js");
+
+    showUpSlider();
+    linkSlide();
+    clickToShow();
+  } else if (location.pathname == '/modules.html') {
+    mainSlider('.sidecontrol a', 'div.next', '.prev');
+  }
 });
 
 /***/ }),

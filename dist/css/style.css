@@ -644,14 +644,15 @@ a:active {
 
 .difference__info-cards .officer__card-item .card__descr {
   width: 243px;
-  padding: 23px 55px 21px 25px;
+  padding: 23px 40px 21px 25px;
   font-weight: 400;
   line-height: 20px;
   font-size: 14px;
   letter-spacing: -.28px
 }
 
-.difference__info-cards .officer__card-item .card__click {
+.difference__info-cards .officer__card-item .card__click,
+.difference__info-cards .officerold__card-item .card__click {
   width: 243px;
   font-weight: 700;
   line-height: normal;
