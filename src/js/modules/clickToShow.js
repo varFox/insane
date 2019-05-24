@@ -48,10 +48,10 @@ const clickToShow = () => {
   const addCard = (data, officer) => {
     let int = officer.children.length - 1;
     if (int < 3) {
-    let div = document.createElement('div');
-    div.classList.add(data[1].class);
-    div.innerHTML = `<div class="${data[int].elem[1].class}">${data[int].elem[1].descr}</div><div class="${data[int].elem[2].class}">${data[int].elem[2].descr}</div>`;
-    officer.insertBefore(div, officer.lastElementChild);      
+      let div = document.createElement('div');
+      div.classList.add(data[1].class);
+      div.innerHTML = `<div class="${data[int].elem[1].class}">${data[int].elem[1].descr}</div><div class="${data[int].elem[2].class}">${data[int].elem[2].descr}</div>`;
+      officer.insertBefore(div, officer.lastElementChild);      
     } else {
       officer.lastElementChild.innerHTML = `<div class="${data[int].elem[1].class}">${data[int].elem[1].descr}</div><div class="${data[int].elem[2].class}">${data[int].elem[2].descr}</div>`;
     }
