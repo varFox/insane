@@ -10965,29 +10965,25 @@ module.exports = playVideo;
 /***/ (function(module, exports) {
 
 var showUpSlider = function showUpSlider() {
-  var showBtns = document.querySelector('.showup__info-btns'),
-      showCards = document.querySelector('.showup__content-card');
-  showBtns.addEventListener('click', function (event) {
-    var target = event.target;
-
-    if (target.classList.contains('slick-next')) {
-      var activeCard = showCards.querySelector('.card-active');
-      var div = document.createElement('div');
-      div = activeCard;
-      showCards.children[0].remove();
-      showCards.appendChild(div);
-      div.classList.remove('card-active');
-      showCards.children[0].classList.add('card-active');
-    }
-
-    if (target.classList.contains('slick-prev')) {
-      var _div = document.createElement('div');
-
-      _div = showCards.lastElementChild;
-      showCards.classList.remove('.card-active');
-      showCards.insertBefore(_div, showCards.children[0]);
-      showCards.children[0].classList.add('.card-active');
-    }
+  var showCards = document.querySelector('.showup__content-card'),
+      showBtnPrev = document.querySelector('.slick-prev.showup__btn'),
+      showBtnNext = document.querySelector('.slick-next.showup__btn');
+  showBtnNext.addEventListener('click', function () {
+    var activeCard = showCards.querySelector('.card-active');
+    var div = document.createElement('div');
+    div = activeCard;
+    showCards.children[0].remove();
+    showCards.appendChild(div);
+    div.classList.remove('card-active');
+    showCards.children[0].classList.add('card-active');
+  });
+  showBtnPrev.addEventListener('click', function () {
+    var activeCard = showCards.querySelector('.card-active');
+    var div = document.createElement('div');
+    div = showCards.lastElementChild;
+    activeCard.classList.remove('card-active');
+    showCards.insertBefore(div, showCards.children[0]);
+    showCards.children[0].classList.add('card-active');
   });
 };
 

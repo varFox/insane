@@ -1,7 +1,6 @@
 {
   "name": "insane",
   "version": "1.0.0",
-  "description": "",
   "main": "webpack.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -27,5 +26,14 @@
   },
   "dependencies": {
     "babel-plugin-es6-promise": "^1.1.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/varFox/insane.git"
+  },
+  "bugs": {
+    "url": "https://github.com/varFox/insane/issues"
+  },
+  "homepage": "https://github.com/varFox/insane#readme",
+  "description": ""
 }

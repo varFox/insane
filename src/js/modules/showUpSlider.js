@@ -1,13 +1,11 @@
 const showUpSlider = () => {
 
-  const showBtns = document.querySelector('.showup__info-btns'),
-        showCards = document.querySelector('.showup__content-card');
+  const showCards = document.querySelector('.showup__content-card'),
+        showBtnPrev = document.querySelector('.slick-prev.showup__btn'),
+        showBtnNext = document.querySelector('.slick-next.showup__btn');
         
 
-  showBtns.addEventListener('click', event => {
-    let target = event.target;
-
-    if (target.classList.contains('slick-next')) {
+  showBtnNext.addEventListener('click', () => {
       let activeCard = showCards.querySelector('.card-active');
       let div = document.createElement('div');
       div = activeCard;
@@ -15,16 +13,16 @@ const showUpSlider = () => {
       showCards.children[0].remove();
       showCards.appendChild(div);
       div.classList.remove('card-active');
-      showCards.children[0].classList.add('card-active');      
-    }
-    if (target.classList.contains('slick-prev')) {
+      showCards.children[0].classList.add('card-active'); 
+  });
+  showBtnPrev.addEventListener('click', () => {
+    let activeCard = showCards.querySelector('.card-active');
       let div = document.createElement('div');
       div = showCards.lastElementChild;
 
-      showCards.classList.remove('.card-active');
+      activeCard.classList.remove('card-active');
       showCards.insertBefore(div, showCards.children[0]);
-      showCards.children[0].classList.add('.card-active');
-    }
+      showCards.children[0].classList.add('card-active');
   });
 };
 
