@@ -11164,7 +11164,9 @@ window.addEventListener('DOMContentLoaded', function () {
   mainSlider('.sidecontrol a', '.sidecontrol__controls a');
   playVideo();
 
-  if (location.pathname == '/') {
+  if (/modules/.test(location.pathname)) {
+    mainSlider('.sidecontrol a', 'div.next', '.prev');
+  } else {
     var showUpSlider = __webpack_require__(/*! ./modules/showUpSlider.js */ "./src/js/modules/showUpSlider.js"),
         linkSlide = __webpack_require__(/*! ./modules/linkSlide.js */ "./src/js/modules/linkSlide.js"),
         clickToShow = __webpack_require__(/*! ./modules/clickToShow.js */ "./src/js/modules/clickToShow.js");
@@ -11172,8 +11174,6 @@ window.addEventListener('DOMContentLoaded', function () {
     showUpSlider();
     linkSlide();
     clickToShow();
-  } else if (location.pathname == '/modules.html') {
-    mainSlider('.sidecontrol a', 'div.next', '.prev');
   }
 });
 

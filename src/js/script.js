@@ -10,8 +10,10 @@ window.addEventListener('DOMContentLoaded', function () {
       
   mainSlider('.sidecontrol a', '.sidecontrol__controls a'); 
   playVideo();
-  
-  if (location.pathname == '/') {
+
+  if (/modules/.test(location.pathname)) {
+    mainSlider('.sidecontrol a', 'div.next', '.prev');
+  } else {
     let showUpSlider = require('./modules/showUpSlider.js'),
         linkSlide = require('./modules/linkSlide.js'),
         clickToShow = require('./modules/clickToShow.js');
@@ -19,9 +21,7 @@ window.addEventListener('DOMContentLoaded', function () {
     showUpSlider();
     linkSlide();
     clickToShow();
-  } else if (location.pathname == '/modules.html') {
-    mainSlider('.sidecontrol a', 'div.next', '.prev');
-  }
+  } 
   
 
 });
