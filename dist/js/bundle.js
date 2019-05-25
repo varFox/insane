@@ -11051,7 +11051,7 @@ var linkSlide = function linkSlide() {
     }
   });
   plus.addEventListener('click', function () {
-    window.location.href = '/modules.html';
+    window.location.href = '/modules.html#1';
   });
 };
 

@@ -11,7 +11,7 @@ const linkSlide = () => {
     }
   });
   plus.addEventListener('click', () => {
-    window.location.href = '/modules.html';
+    window.location.href = '/modules.html#1';
   });
 
 };
