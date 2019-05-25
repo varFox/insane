@@ -1199,6 +1199,7 @@ a:active {
 }
 
 .feed__slider {
+  position: relative;
   width: 100%;
   height: 430px;
   margin-left: 148px;
@@ -1254,6 +1255,8 @@ a:active {
 }
 
 .feed__item {
+  display: inline-block;
+  vertical-align: top;  
   width: 241px;
   min-height: 341px;
   border-radius: 8px;
@@ -2021,23 +2024,35 @@ a:active {
   -webkit-transform: none;
   transform: none
 }
-.showup__btn {
+.showup__btn,
+.feed__btn {
   border: 2px solid #fff;
   opacity: .5;
 }
-.modules__info-btns .showup__btn:hover {
+.feed__btn {
+  position: absolute;
+}
+.modules__info-btns .showup__btn:hover,
+.feed__info-btns .feed__btn:hover {
   border: 2px solid #fff;
   opacity: 1;
 }
-.modules__info-btns .showup__btn:hover svg path {
+.modules__info-btns .showup__btn:hover svg path,
+.feed__info-btns .feed__btn:hover svg path {
   fill: #fff;
+}
+.feed__info-btns {
+  position: absolute;
+  bottom: 0;
+  margin-top: 0;
 }
 .showup__info-btns {
   position: absolute;
   bottom: 0;
 }
 .showup__content-card,
-.modules__content-card {
+.modules__content-card,
+.feed__slider-cards {
   width: 3000px;
 }
 

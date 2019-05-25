@@ -11140,7 +11140,7 @@ module.exports = playVideo;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var showUpSlider = function showUpSlider(cards, prev, next) {
+var showUpSlider = function showUpSlider(cards, prev, next, classActive) {
   var showCards = document.querySelector(cards),
       showBtnPrev = document.querySelector(prev),
       showBtnNext = document.querySelector(next);
@@ -11148,22 +11148,22 @@ var showUpSlider = function showUpSlider(cards, prev, next) {
     nextSlide();
   });
   showBtnPrev.addEventListener('click', function () {
-    var activeCard = showCards.querySelector('.card-active');
+    var activeCard = showCards.querySelector(".".concat(classActive));
     var div = document.createElement('div');
     div = showCards.lastElementChild;
-    activeCard.classList.remove('card-active');
+    activeCard.classList.remove(classActive);
     showCards.insertBefore(div, showCards.children[0]);
-    showCards.children[0].classList.add('card-active');
+    showCards.children[0].classList.add(classActive);
   });
 
   var nextSlide = function nextSlide() {
-    var activeCard = showCards.querySelector('.card-active');
+    var activeCard = showCards.querySelector(".".concat(classActive));
     var div = document.createElement('div');
     div = activeCard;
     showCards.children[0].remove();
     showCards.appendChild(div);
-    div.classList.remove('card-active');
-    showCards.children[0].classList.add('card-active');
+    div.classList.remove(classActive);
+    showCards.children[0].classList.add(classActive);
   };
 
   var timer = setInterval(function () {
@@ -11205,10 +11205,11 @@ window.addEventListener('DOMContentLoaded', function () {
         clickToShow = __webpack_require__(/*! ./modules/clickToShow.js */ "./src/js/modules/clickToShow.js"),
         hayHanson = __webpack_require__(/*! ./modules/hayHanson.js */ "./src/js/modules/hayHanson.js");
 
-    showUpSlider('.showup__content-card', '.slick-prev.showup__btn', '.slick-next.showup__btn');
+    showUpSlider('.showup__content-card', '.slick-prev.showup__btn', '.slick-next.showup__btn', 'card-active');
+    showUpSlider('.modules__content-card', '.modules__info .slick-prev', '.modules__info .slick-next', 'card-active');
+    showUpSlider('.feed__slider-cards', '.feed__info-btns .slick-prev', '.feed__info-btns .slick-next', 'feed__item-active');
     linkSlide();
     clickToShow();
-    showUpSlider('.modules__content-card', '.modules__info .slick-prev', '.modules__info .slick-next');
     hayHanson();
   }
 });
