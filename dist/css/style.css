@@ -901,7 +901,7 @@ a:active {
 }
 
 .modules__content-slider .card {
-  display: block;
+  display: inline-block;
   width: 296px;
   height: 417px;
   border-radius: 8px;
@@ -2036,7 +2036,8 @@ a:active {
   position: absolute;
   bottom: 0;
 }
-.showup__content-card {
+.showup__content-card,
+.modules__content-card {
   width: 3000px;
 }
 

@@ -11006,6 +11006,31 @@ module.exports = clickToShow;
 
 /***/ }),
 
+/***/ "./src/js/modules/hayHanson.js":
+/*!*************************************!*\
+  !*** ./src/js/modules/hayHanson.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var hayHanson = function hayHanson() {
+  var hanson = document.querySelector('.hanson');
+  hanson.style.opacity = '0';
+  window.addEventListener('scroll', function () {
+    if (window.pageYOffset + hanson.getBoundingClientRect().bottom >= window.pageYOffset && window.pageYOffset + hanson.getBoundingClientRect().top < window.pageYOffset + document.documentElement.clientHeight) {
+      setTimeout(function () {
+        hanson.style.opacity = '1';
+      }, 3000);
+    } else {
+      hanson.style.opacity = '0';
+    }
+  });
+};
+
+module.exports = hayHanson;
+
+/***/ }),
+
 /***/ "./src/js/modules/linkSlide.js":
 /*!*************************************!*\
   !*** ./src/js/modules/linkSlide.js ***!
@@ -11115,18 +11140,12 @@ module.exports = playVideo;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var showUpSlider = function showUpSlider() {
-  var showCards = document.querySelector('.showup__content-card'),
-      showBtnPrev = document.querySelector('.slick-prev.showup__btn'),
-      showBtnNext = document.querySelector('.slick-next.showup__btn');
+var showUpSlider = function showUpSlider(cards, prev, next) {
+  var showCards = document.querySelector(cards),
+      showBtnPrev = document.querySelector(prev),
+      showBtnNext = document.querySelector(next);
   showBtnNext.addEventListener('click', function () {
-    var activeCard = showCards.querySelector('.card-active');
-    var div = document.createElement('div');
-    div = activeCard;
-    showCards.children[0].remove();
-    showCards.appendChild(div);
-    div.classList.remove('card-active');
-    showCards.children[0].classList.add('card-active');
+    nextSlide();
   });
   showBtnPrev.addEventListener('click', function () {
     var activeCard = showCards.querySelector('.card-active');
@@ -11136,6 +11155,20 @@ var showUpSlider = function showUpSlider() {
     showCards.insertBefore(div, showCards.children[0]);
     showCards.children[0].classList.add('card-active');
   });
+
+  var nextSlide = function nextSlide() {
+    var activeCard = showCards.querySelector('.card-active');
+    var div = document.createElement('div');
+    div = activeCard;
+    showCards.children[0].remove();
+    showCards.appendChild(div);
+    div.classList.remove('card-active');
+    showCards.children[0].classList.add('card-active');
+  };
+
+  var timer = setInterval(function () {
+    nextSlide();
+  }, 4000);
 };
 
 module.exports = showUpSlider;
@@ -11169,11 +11202,14 @@ window.addEventListener('DOMContentLoaded', function () {
   } else {
     var showUpSlider = __webpack_require__(/*! ./modules/showUpSlider.js */ "./src/js/modules/showUpSlider.js"),
         linkSlide = __webpack_require__(/*! ./modules/linkSlide.js */ "./src/js/modules/linkSlide.js"),
-        clickToShow = __webpack_require__(/*! ./modules/clickToShow.js */ "./src/js/modules/clickToShow.js");
+        clickToShow = __webpack_require__(/*! ./modules/clickToShow.js */ "./src/js/modules/clickToShow.js"),
+        hayHanson = __webpack_require__(/*! ./modules/hayHanson.js */ "./src/js/modules/hayHanson.js");
 
-    showUpSlider();
+    showUpSlider('.showup__content-card', '.slick-prev.showup__btn', '.slick-next.showup__btn');
     linkSlide();
     clickToShow();
+    showUpSlider('.modules__content-card', '.modules__info .slick-prev', '.modules__info .slick-next');
+    hayHanson();
   }
 });
 

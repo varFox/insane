@@ -1,19 +1,12 @@
-const showUpSlider = () => {
+const showUpSlider = (cards, prev, next) => {
 
-  const showCards = document.querySelector('.showup__content-card'),
-    showBtnPrev = document.querySelector('.slick-prev.showup__btn'),
-    showBtnNext = document.querySelector('.slick-next.showup__btn');
+  const showCards = document.querySelector(cards),
+    showBtnPrev = document.querySelector(prev),
+    showBtnNext = document.querySelector(next);
 
 
   showBtnNext.addEventListener('click', () => {
-    let activeCard = showCards.querySelector('.card-active');
-    let div = document.createElement('div');
-    div = activeCard;
-
-    showCards.children[0].remove();
-    showCards.appendChild(div);
-    div.classList.remove('card-active');
-    showCards.children[0].classList.add('card-active');
+    nextSlide();
   });
   showBtnPrev.addEventListener('click', () => {
     let activeCard = showCards.querySelector('.card-active');
@@ -25,6 +18,20 @@ const showUpSlider = () => {
     showCards.children[0].classList.add('card-active');
   });
 
+  const nextSlide = () => {
+    let activeCard = showCards.querySelector('.card-active');
+    let div = document.createElement('div');
+    div = activeCard;
+
+    showCards.children[0].remove();
+    showCards.appendChild(div);
+    div.classList.remove('card-active');
+    showCards.children[0].classList.add('card-active');
+  };
+
+  const timer = setInterval(() => {
+    nextSlide();
+  }, 4000);
 };
 
 module.exports = showUpSlider;
