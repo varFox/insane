@@ -10,10 +10,7 @@ window.addEventListener('DOMContentLoaded', function () {
       
   mainSlider('.sidecontrol a', '.sidecontrol__controls a'); 
   playVideo();
-  
-  // if (location.pathname == '/') {
-    
-  // } 
+ 
   if (/modules/.test(location.pathname)) {
     mainSlider('.sidecontrol a', 'div.next', '.prev');
   } else {

@@ -11162,8 +11162,7 @@ window.addEventListener('DOMContentLoaded', function () {
       playVideo = __webpack_require__(/*! ./modules/playVideo.js */ "./src/js/modules/playVideo.js");
 
   mainSlider('.sidecontrol a', '.sidecontrol__controls a');
-  playVideo(); // if (location.pathname == '/') {
-  // } 
+  playVideo();
 
   if (/modules/.test(location.pathname)) {
     mainSlider('.sidecontrol a', 'div.next', '.prev');
