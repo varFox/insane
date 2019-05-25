@@ -1807,12 +1807,13 @@ a:active {
   margin-right: 16px
 }
 
-.module__info-descr {
+.module__info-descr,
+.module__lorem {
   margin-top: 17px;
   font-weight: 400;
   line-height: 24px;
   font-size: 14px;
-  letter-spacing: -.28px
+  letter-spacing: -.28px;
 }
 
 .module__info-show {
@@ -2062,3 +2063,15 @@ a:active {
 .showup__content .card-active .card__controls-arrow {
   opacity: 1;
 }
+.module__lorem {
+  height: 0;
+  overflow: hidden;  
+}
+.accordion-show {
+  animation: accordion .5s ease;
+  animation-fill-mode: forwards;
+}
+@keyframes accordion {
+    0% { transform: translate(0px,-50px) rotate(0deg) ; opacity: 0; height: 0; }
+    100% { transform: translate(0px,0px) rotate(0deg) ; opacity: 1; height: auto; }
+ }

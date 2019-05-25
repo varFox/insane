@@ -10883,6 +10883,28 @@ module.exports = g;
 
 /***/ }),
 
+/***/ "./src/js/modules/accordion.js":
+/*!*************************************!*\
+  !*** ./src/js/modules/accordion.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var accordion = function accordion() {
+  document.body.addEventListener('click', function (event) {
+    var target = event.target;
+
+    if (target.classList.contains('plus') || target.closest('.plus')) {
+      var lorem = target.closest('.module__info').querySelector('.module__lorem');
+      lorem.classList.contains('accordion-show') ? lorem.classList.remove('accordion-show') : lorem.classList.add('accordion-show');
+    }
+  });
+};
+
+module.exports = accordion;
+
+/***/ }),
+
 /***/ "./src/js/modules/clickToShow.js":
 /*!***************************************!*\
   !*** ./src/js/modules/clickToShow.js ***!
@@ -11198,7 +11220,10 @@ window.addEventListener('DOMContentLoaded', function () {
   playVideo();
 
   if (/modules/.test(location.pathname)) {
+    var accordion = __webpack_require__(/*! ./modules/accordion.js */ "./src/js/modules/accordion.js");
+
     mainSlider('.sidecontrol a', 'div.next', '.prev');
+    accordion();
   } else {
     var showUpSlider = __webpack_require__(/*! ./modules/showUpSlider.js */ "./src/js/modules/showUpSlider.js"),
         linkSlide = __webpack_require__(/*! ./modules/linkSlide.js */ "./src/js/modules/linkSlide.js"),

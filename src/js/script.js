@@ -12,7 +12,10 @@ window.addEventListener('DOMContentLoaded', function () {
   playVideo();
  
   if (/modules/.test(location.pathname)) {
+    let accordion = require('./modules/accordion.js');
+
     mainSlider('.sidecontrol a', 'div.next', '.prev');
+    accordion();
   } else {
     let showUpSlider = require('./modules/showUpSlider.js'),
         linkSlide = require('./modules/linkSlide.js'),
