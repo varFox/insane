@@ -1067,14 +1067,16 @@ a:active {
   margin-top: 27px
 }
 
-.join__evolution .form__block {
+.join__evolution .form__block,
+.schedule__form .form__btn {
   display: flex;
   justify-content: flex-start;
   margin-top: 32px;
   align-items: center
 }
 
-.join__evolution .form__block .btn {
+.join__evolution .form__block .btn,
+.form__btn .btn {
   background-color: #000;
   color: #fff;
   padding: 21px 80px 22px 80px;
@@ -1083,13 +1085,17 @@ a:active {
   margin-right: 32px
 }
 
-.join__evolution .form__block .policy {
+.join__evolution .form__block .policy,
+.form__btn .policy {
   font-weight: 400;
   line-height: 18px;
   font-size: 12px;
   color: #fff;
   mix-blend-mode: normal;
   opacity: .89
+}
+.form__btn .policy {
+  color: #000;
 }
 
 .join__evolution .form__block div {
@@ -1639,7 +1645,6 @@ a:active {
 }
 
 .schedule__form .form .btn {
-  margin-top: 36px;
   background-color: #000;
   color: #fff;
   padding: 21px 66px 20px 66px
@@ -2070,8 +2075,15 @@ a:active {
 .accordion-show {
   animation: accordion .5s ease;
   animation-fill-mode: forwards;
+  
 }
 @keyframes accordion {
-    0% { transform: translate(0px,-50px) rotate(0deg) ; opacity: 0; height: 0; }
-    100% { transform: translate(0px,0px) rotate(0deg) ; opacity: 1; height: auto; }
+  0% { transform: translate(0px,-50px) rotate(0deg);
+       opacity: 0;
+       height: 0px; 
+     }
+  100% { transform: translate(0px,0px) rotate(0deg);
+         opacity: 1;
+         height: 100px; 
+       }
  }

@@ -1,4 +1,4 @@
-const showUpSlider = (cards, prev, next, classActive) => {
+const showUpSlider = (cards, prev, next, classActive, bul) => {
 
   const showCards = document.querySelector(cards),
     showBtnPrev = document.querySelector(prev),
@@ -28,10 +28,12 @@ const showUpSlider = (cards, prev, next, classActive) => {
     div.classList.remove(classActive);
     showCards.children[0].classList.add(classActive);
   };
-
-  const timer = setInterval(() => {
-    nextSlide();
-  }, 4000);
+  if (bul) {
+    setInterval(() => {
+      nextSlide();
+    }, 4000);
+  }
+  
 };
 
 module.exports = showUpSlider;

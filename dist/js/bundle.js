@@ -11028,6 +11028,95 @@ module.exports = clickToShow;
 
 /***/ }),
 
+/***/ "./src/js/modules/form.js":
+/*!********************************!*\
+  !*** ./src/js/modules/form.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+var form = function form(formName) {
+  var message = {
+    loading: 'Загрузка...',
+    success: 'Спасибо! Мы с вами свяжемся',
+    failure: 'Что-то пошло не так...'
+  };
+  var form = document.querySelectorAll(formName);
+  form.forEach(function (item) {
+    var input = item.querySelectorAll('input'),
+        messageDiv = item.querySelector('.block_message');
+    item.addEventListener('submit', function (event) {
+      event.preventDefault();
+      var formData = new FormData(item);
+      var request = new XMLHttpRequest();
+      request.open('POST', 'server.php');
+      request.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+
+      request.onreadystatechange = function () {
+        if (request.readyState < 4) {
+          messageDiv.textContent = message.loading;
+        } else if (request.readyState === 4) {
+          if (request.status == 200) {
+            messageDiv.textContent = message.success;
+            clearInput();
+          } else {
+            messageDiv.textContent = message.failure;
+          }
+        }
+      };
+
+      var jsonObject = {};
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = formData.entries()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var _step$value = _slicedToArray(_step.value, 2),
+              key = _step$value[0],
+              value = _step$value[1];
+
+          jsonObject[key] = value;
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return != null) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+
+      if (item.querySelector('select')) jsonObject[item.querySelector('select').id] = item.querySelector('select').value;
+      request.send(JSON.stringify(jsonObject));
+
+      var clearInput = function clearInput() {
+        for (var i = 0; i < input.length; i++) {
+          input[i].value = '';
+        }
+      };
+    });
+  });
+};
+
+module.exports = form;
+
+/***/ }),
+
 /***/ "./src/js/modules/hayHanson.js":
 /*!*************************************!*\
   !*** ./src/js/modules/hayHanson.js ***!
@@ -11162,7 +11251,7 @@ module.exports = playVideo;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var showUpSlider = function showUpSlider(cards, prev, next, classActive) {
+var showUpSlider = function showUpSlider(cards, prev, next, classActive, bul) {
   var showCards = document.querySelector(cards),
       showBtnPrev = document.querySelector(prev),
       showBtnNext = document.querySelector(next);
@@ -11188,12 +11277,93 @@ var showUpSlider = function showUpSlider(cards, prev, next, classActive) {
     showCards.children[0].classList.add(classActive);
   };
 
-  var timer = setInterval(function () {
-    nextSlide();
-  }, 4000);
+  if (bul) {
+    setInterval(function () {
+      nextSlide();
+    }, 4000);
+  }
 };
 
 module.exports = showUpSlider;
+
+/***/ }),
+
+/***/ "./src/js/modules/valid.js":
+/*!*********************************!*\
+  !*** ./src/js/modules/valid.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var valid = function valid() {
+  //number --------------------------
+  var number = document.querySelector('#phone');
+  var pos = 0;
+  number.addEventListener('keydown', function (e) {
+    validNumber(e, number, pos);
+  });
+  number.addEventListener('focus', function () {
+    if (pos == 0) {
+      number.value = '+1 (';
+      pos = 3;
+    }
+  });
+  number.addEventListener('blur', function () {
+    if (number.value.slice(-1) == '(') {
+      number.value = '';
+      pos = 0;
+    }
+  });
+
+  var validNumber = function validNumber(e, input, pos) {
+    pos = input.value.length;
+    e.preventDefault();
+
+    if (e.key.match(/[0-9]/) && pos < 18 && (pos == '12' || pos == '8')) {
+      input.value += ' ' + e.key;
+      pos = input.value.length;
+    } else if (e.key.match(/[0-9]/) && pos < 18) {
+      input.value += e.key;
+      pos = input.value.length;
+
+      if (pos == '7') {
+        input.value += ') ';
+      } else if (pos == '12' || pos == '13') {
+        input.value += ' ';
+      }
+
+      pos = input.value.length;
+    }
+
+    if (e.key == 'Backspace') {
+      if (pos == '10' || pos == '14' || pos == '8') {
+        input.value = input.value.substring(0, pos - 2);
+      } else if (pos > 4) {
+        input.value = input.value.substring(0, pos - 1);
+      }
+
+      pos = input.value.length;
+    }
+
+    return pos;
+  }; //endNumber ----------------
+  // email
+
+
+  var email = document.querySelectorAll('.email');
+  email.forEach(function (item) {
+    item.addEventListener('input', function () {
+      item.value = item.value.replace(/[а-я]/gi, '');
+    });
+  }); // date
+
+  var date = document.querySelector('#when');
+  date.addEventListener('input', function () {
+    date.value = date.value.replace(/[^./\d]/, '');
+  });
+};
+
+module.exports = valid;
 
 /***/ }),
 
@@ -11228,14 +11398,18 @@ window.addEventListener('DOMContentLoaded', function () {
     var showUpSlider = __webpack_require__(/*! ./modules/showUpSlider.js */ "./src/js/modules/showUpSlider.js"),
         linkSlide = __webpack_require__(/*! ./modules/linkSlide.js */ "./src/js/modules/linkSlide.js"),
         clickToShow = __webpack_require__(/*! ./modules/clickToShow.js */ "./src/js/modules/clickToShow.js"),
-        hayHanson = __webpack_require__(/*! ./modules/hayHanson.js */ "./src/js/modules/hayHanson.js");
+        hayHanson = __webpack_require__(/*! ./modules/hayHanson.js */ "./src/js/modules/hayHanson.js"),
+        form = __webpack_require__(/*! ./modules/form.js */ "./src/js/modules/form.js"),
+        valid = __webpack_require__(/*! ./modules/valid.js */ "./src/js/modules/valid.js");
 
-    showUpSlider('.showup__content-card', '.slick-prev.showup__btn', '.slick-next.showup__btn', 'card-active');
-    showUpSlider('.modules__content-card', '.modules__info .slick-prev', '.modules__info .slick-next', 'card-active');
-    showUpSlider('.feed__slider-cards', '.feed__info-btns .slick-prev', '.feed__info-btns .slick-next', 'feed__item-active');
+    showUpSlider('.showup__content-card', '.slick-prev.showup__btn', '.slick-next.showup__btn', 'card-active', false);
+    showUpSlider('.modules__content-card', '.modules__info .slick-prev', '.modules__info .slick-next', 'card-active', true);
+    showUpSlider('.feed__slider-cards', '.feed__info-btns .slick-prev', '.feed__info-btns .slick-next', 'feed__item-active', false);
     linkSlide();
     clickToShow();
     hayHanson();
+    form('.form');
+    valid();
   }
 });
 
