@@ -7,11 +7,11 @@ const linkSlide = () => {
     if (target.classList.contains('card') || target.closest('.card')) {
       let card;
       target.classList.contains('card') ? card = target : card = target.closest('.card');
-      card.href = `modules.html#${card.classList[1].replace('card__', '')}`;
+      card.href = `http://insane/modules.html#${card.classList[1].replace('card__', '')}`;
     }
   });
   plus.addEventListener('click', () => {
-    window.location.href = '/modules.html';
+    window.location.href = 'http://insane/modules.html#1';
   });
 
 };
