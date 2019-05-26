@@ -11028,6 +11028,30 @@ module.exports = clickToShow;
 
 /***/ }),
 
+/***/ "./src/js/modules/dowloadFile.js":
+/*!***************************************!*\
+  !*** ./src/js/modules/dowloadFile.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var dowloadFile = function dowloadFile() {
+  var download = document.querySelectorAll('.download');
+  download.forEach(function (item) {
+    item.addEventListener('click', function () {
+      var f = document.createElement('a');
+      f.setAttribute('href', '/files/photoshop_kocbyru.pdf');
+      f.setAttribute('dowload', 'dowload');
+      f.setAttribute('target', '_blank');
+      f.click();
+    });
+  });
+};
+
+module.exports = dowloadFile;
+
+/***/ }),
+
 /***/ "./src/js/modules/form.js":
 /*!********************************!*\
   !*** ./src/js/modules/form.js ***!
@@ -11288,6 +11312,40 @@ module.exports = showUpSlider;
 
 /***/ }),
 
+/***/ "./src/js/modules/showVideo.js":
+/*!*************************************!*\
+  !*** ./src/js/modules/showVideo.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var showVideo = function showVideo() {
+  var modules = document.querySelectorAll('.module__video-item');
+
+  var _loop = function _loop(i) {
+    modules[i].addEventListener('click', function (event) {
+      if (event.target.classList.contains('play__circle') && !event.target.classList.contains('closed') && modules[i + 1] && modules[i + 1].querySelector('.closed')) {
+        var cont = event.target.innerHTML;
+        document.querySelector('.close').addEventListener('click', function () {
+          if (modules[i + 1].querySelector('.closed')) {
+            modules[i + 1].querySelector('.closed').innerHTML = cont;
+            modules[i + 1].querySelector('.closed').classList.remove('closed');
+            modules[i + 1].style.opacity = '1';
+          }
+        });
+      }
+    });
+  };
+
+  for (var i = 0; i < modules.length; i++) {
+    _loop(i);
+  }
+};
+
+module.exports = showVideo;
+
+/***/ }),
+
 /***/ "./src/js/modules/valid.js":
 /*!*********************************!*\
   !*** ./src/js/modules/valid.js ***!
@@ -11319,10 +11377,10 @@ var valid = function valid() {
     pos = input.value.length;
     e.preventDefault();
 
-    if (e.key.match(/[0-9]/) && pos < 18 && (pos == '12' || pos == '8')) {
+    if (e.key.match(/[0-9]/) && pos < 17 && (pos == '12' || pos == '8')) {
       input.value += ' ' + e.key;
       pos = input.value.length;
-    } else if (e.key.match(/[0-9]/) && pos < 18) {
+    } else if (e.key.match(/[0-9]/) && pos < 17) {
       input.value += e.key;
       pos = input.value.length;
 
@@ -11390,10 +11448,14 @@ window.addEventListener('DOMContentLoaded', function () {
   playVideo();
 
   if (/modules/.test(location.pathname)) {
-    var accordion = __webpack_require__(/*! ./modules/accordion.js */ "./src/js/modules/accordion.js");
+    var accordion = __webpack_require__(/*! ./modules/accordion.js */ "./src/js/modules/accordion.js"),
+        dowloadFile = __webpack_require__(/*! ./modules/dowloadFile.js */ "./src/js/modules/dowloadFile.js"),
+        showVideo = __webpack_require__(/*! ./modules/showVideo.js */ "./src/js/modules/showVideo.js");
 
     mainSlider('.sidecontrol a', 'div.next', '.prev');
     accordion();
+    dowloadFile();
+    showVideo();
   } else {
     var showUpSlider = __webpack_require__(/*! ./modules/showUpSlider.js */ "./src/js/modules/showUpSlider.js"),
         linkSlide = __webpack_require__(/*! ./modules/linkSlide.js */ "./src/js/modules/linkSlide.js"),

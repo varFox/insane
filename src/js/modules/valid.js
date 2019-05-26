@@ -21,10 +21,10 @@ const valid = () => {
   const validNumber = (e, input, pos) => {
     pos = input.value.length;
     e.preventDefault();
-    if (e.key.match(/[0-9]/) && pos < 18 && (pos == '12' || pos == '8')) {
+    if (e.key.match(/[0-9]/) && pos < 17 && (pos == '12' || pos == '8')) {
       input.value += ' ' + e.key;
       pos = input.value.length;
-    } else if (e.key.match(/[0-9]/) && pos < 18) {
+    } else if (e.key.match(/[0-9]/) && pos < 17) {
       input.value += e.key;
       pos = input.value.length;
       if (pos == '7') {
