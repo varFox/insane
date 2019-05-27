@@ -11520,6 +11520,42 @@ module.exports = playVideo;
 
 /***/ }),
 
+/***/ "./src/js/modules/polyfill.js":
+/*!************************************!*\
+  !*** ./src/js/modules/polyfill.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// export default function polyfill(window) {
+var ElementPrototype = window.Element.prototype;
+
+if (!Element.prototype.matches) {
+  Element.prototype.matches = Element.prototype.matchesSelector || Element.prototype.mozMatchesSelector || Element.prototype.msMatchesSelector || Element.prototype.oMatchesSelector || Element.prototype.webkitMatchesSelector || function (s) {
+    var matches = (this.document || this.ownerDocument).querySelectorAll(s),
+        i = matches.length;
+
+    while (--i >= 0 && matches.item(i) !== this) {}
+
+    return i > -1;
+  };
+}
+
+if (!Element.prototype.closest) {
+  Element.prototype.closest = function (s) {
+    var el = this;
+
+    do {
+      if (el.matches(s)) return el;
+      el = el.parentElement || el.parentNode;
+    } while (el !== null && el.nodeType === 1);
+
+    return null;
+  };
+} // }
+
+/***/ }),
+
 /***/ "./src/js/modules/showUpSlider.js":
 /*!****************************************!*\
   !*** ./src/js/modules/showUpSlider.js ***!
@@ -11705,6 +11741,8 @@ __webpack_require__(/*! formdata-polyfill */ "./node_modules/formdata-polyfill/f
 
 __webpack_require__(/*! classlist-polyfill */ "./node_modules/classlist-polyfill/src/index.js");
 
+__webpack_require__(/*! ./modules/polyfill.js */ "./src/js/modules/polyfill.js");
+
 window.addEventListener('DOMContentLoaded', function () {
   'use strict';
 
@@ -11712,7 +11750,7 @@ window.addEventListener('DOMContentLoaded', function () {
       playVideo = __webpack_require__(/*! ./modules/playVideo.js */ "./src/js/modules/playVideo.js");
 
   mainSlider('.sidecontrol a', '.sidecontrol__controls a');
-  playVideo();
+  playVideo(); // polyfill();
 
   if (/modules/.test(location.pathname)) {
     var accordion = __webpack_require__(/*! ./modules/accordion.js */ "./src/js/modules/accordion.js"),

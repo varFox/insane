@@ -2,7 +2,7 @@ require('ie11-scroll-into-view');
 require('nodelist-foreach-polyfill');
 require('formdata-polyfill');
 require('classlist-polyfill');
-
+require('./modules/polyfill.js');
 
 window.addEventListener('DOMContentLoaded', function () {
   'use strict';
@@ -12,6 +12,7 @@ window.addEventListener('DOMContentLoaded', function () {
       
   mainSlider('.sidecontrol a', '.sidecontrol__controls a'); 
   playVideo();
+  // polyfill();
 
 
  
