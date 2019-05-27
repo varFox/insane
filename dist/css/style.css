@@ -2077,6 +2077,25 @@ a:active {
   animation-fill-mode: forwards;
   
 }
+
+.animate {
+  position: relative;
+  animation: width-card .5s ease;
+  animation-fill-mode: forwards;
+  /* transition: .5s all */
+}
+.out-animate {
+  position: relative;
+  animation: left .5s ease;
+  animation-fill-mode: forwards;
+}
+@keyframes width-card {
+  0% { width: 241px;
+     }
+  100% { width: 555px;
+       }
+}
+
 @keyframes accordion {
   0% { transform: translate(0px,-50px) rotate(0deg);
        opacity: 0;
@@ -2086,4 +2105,13 @@ a:active {
          opacity: 1;
          height: 100px; 
        }
- }
+}
+
+@keyframes left {
+  0% { opacity: 1;
+       right: 0px; 
+  }
+100% {opacity: 0;
+      right: 600px; 
+    }  
+}

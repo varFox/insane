@@ -1,4 +1,4 @@
-const showUpSlider = (cards, prev, next, classActive, bul) => {
+const showUpSlider = (cards, prev, next, classActive, bul, animate) => {
 
   const showCards = document.querySelector(cards),
     showBtnPrev = document.querySelector(prev),
@@ -6,14 +6,16 @@ const showUpSlider = (cards, prev, next, classActive, bul) => {
 
 
   showBtnNext.addEventListener('click', () => {
+
     nextSlide();
   });
   showBtnPrev.addEventListener('click', () => {
     let activeCard = showCards.querySelector(`.${classActive}`);
     let div = document.createElement('div');
-    div = showCards.lastElementChild;
 
+    div = showCards.lastElementChild;
     activeCard.classList.remove(classActive);
+
     showCards.insertBefore(div, showCards.children[0]);
     showCards.children[0].classList.add(classActive);
   });
@@ -22,18 +24,34 @@ const showUpSlider = (cards, prev, next, classActive, bul) => {
     let activeCard = showCards.querySelector(`.${classActive}`);
     let div = document.createElement('div');
     div = activeCard;
+    // if (animate) {
+    //   showCards.children[0].classList.remove('animate');
+    //   showCards.children[0].classList.add('out-animate');
+    //   showCards.children[1].classList.add('animate');
+    //   setTimeout(() => {
+    //     showCards.children[0].remove();
+    //     showCards.appendChild(div);
+    //     div.classList.remove(classActive);
+    //     showCards.children[0].classList.add(classActive);
+    //     showCards.lastElementChild.classList.remove('out-animate');
+    //   }, 500);
 
-    showCards.children[0].remove();
-    showCards.appendChild(div);
-    div.classList.remove(classActive);
-    showCards.children[0].classList.add(classActive);
+    // } else {
+      showCards.removeChild(showCards.children[0]);
+
+      // showCards.children[0].remove();
+      showCards.appendChild(div);
+      div.classList.remove(classActive);
+      showCards.children[0].classList.add(classActive);
+    // }
+
   };
   if (bul) {
     setInterval(() => {
       nextSlide();
     }, 4000);
   }
-  
+
 };
 
 module.exports = showUpSlider;
