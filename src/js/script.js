@@ -12,7 +12,6 @@ window.addEventListener('DOMContentLoaded', function () {
       
   mainSlider('.sidecontrol a', '.sidecontrol__controls a'); 
   playVideo();
-  // polyfill();
 
 
  

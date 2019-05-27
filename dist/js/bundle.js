@@ -11144,7 +11144,6 @@ module.exports = g;
 var accordion = function accordion() {
   document.body.addEventListener('click', function (event) {
     var target = event.target;
-    console.log(target.matches('.plus'));
 
     if (target.classList.contains('plus') || target.closest('.plus')) {
       var lorem = target.closest('.module__info').querySelector('.module__lorem');
@@ -11750,7 +11749,7 @@ window.addEventListener('DOMContentLoaded', function () {
       playVideo = __webpack_require__(/*! ./modules/playVideo.js */ "./src/js/modules/playVideo.js");
 
   mainSlider('.sidecontrol a', '.sidecontrol__controls a');
-  playVideo(); // polyfill();
+  playVideo();
 
   if (/modules/.test(location.pathname)) {
     var accordion = __webpack_require__(/*! ./modules/accordion.js */ "./src/js/modules/accordion.js"),
