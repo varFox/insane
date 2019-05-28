@@ -11583,9 +11583,12 @@ var showUpSlider = function showUpSlider(cards, prev, next, classActive, bul, an
     div = activeCard;
 
     if (animate) {
-      showCards.children[0].classList.remove('animate');
+      if (showCards == document.querySelector('.feed__slider-cards')) {
+        showCards.children[0].classList.remove('animate');
+        showCards.children[1].classList.add('animate');
+      }
+
       showCards.children[0].classList.add('out-animate');
-      showCards.children[1].classList.add('animate');
       showCards.classList.add('show_slide');
       setTimeout(function () {
         showCards.children[0].remove();
