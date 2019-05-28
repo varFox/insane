@@ -16,6 +16,7 @@ const showUpSlider = (cards, prev, next, classActive, bul, animate) => {
 
     showCards.insertBefore(div, showCards.children[0]);
     showCards.children[0].classList.add(classActive);
+    if (animate) showCards.children[1].classList.remove('animate');
   });
 
   const nextSlide = () => {
@@ -23,14 +24,11 @@ const showUpSlider = (cards, prev, next, classActive, bul, animate) => {
     let div = document.createElement('div');
     div = activeCard;
     if (animate) {
-      if (showCards == document.querySelector('.feed__slider-cards')) {
-        showCards.children[0].classList.remove('animate');
-        showCards.children[1].classList.add('animate');
-      }
-      
-      showCards.children[0].classList.add('out-animate');
-      
+      showCards.children[0].classList.remove('animate');
+      showCards.children[1].classList.add('animate');
       showCards.classList.add('show_slide');
+      showCards.children[0].classList.add('out-animate');
+
       setTimeout(() => {
         showCards.children[0].remove();
         showCards.appendChild(div);
@@ -42,13 +40,10 @@ const showUpSlider = (cards, prev, next, classActive, bul, animate) => {
 
     } else {
       showCards.removeChild(showCards.children[0]);
-
-      // showCards.children[0].remove();
       showCards.appendChild(div);
       div.classList.remove(classActive);
       showCards.children[0].classList.add(classActive);
     }
-
   };
   if (bul) {
     setInterval(() => {
@@ -59,4 +54,3 @@ const showUpSlider = (cards, prev, next, classActive, bul, animate) => {
 };
 
 module.exports = showUpSlider;
-

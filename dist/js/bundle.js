@@ -11575,6 +11575,7 @@ var showUpSlider = function showUpSlider(cards, prev, next, classActive, bul, an
     activeCard.classList.remove(classActive);
     showCards.insertBefore(div, showCards.children[0]);
     showCards.children[0].classList.add(classActive);
+    if (animate) showCards.children[1].classList.remove('animate');
   });
 
   var nextSlide = function nextSlide() {
@@ -11583,13 +11584,10 @@ var showUpSlider = function showUpSlider(cards, prev, next, classActive, bul, an
     div = activeCard;
 
     if (animate) {
-      if (showCards == document.querySelector('.feed__slider-cards')) {
-        showCards.children[0].classList.remove('animate');
-        showCards.children[1].classList.add('animate');
-      }
-
-      showCards.children[0].classList.add('out-animate');
+      showCards.children[0].classList.remove('animate');
+      showCards.children[1].classList.add('animate');
       showCards.classList.add('show_slide');
+      showCards.children[0].classList.add('out-animate');
       setTimeout(function () {
         showCards.children[0].remove();
         showCards.appendChild(div);
@@ -11599,8 +11597,7 @@ var showUpSlider = function showUpSlider(cards, prev, next, classActive, bul, an
         showCards.classList.remove('show_slide');
       }, 500);
     } else {
-      showCards.removeChild(showCards.children[0]); // showCards.children[0].remove();
-
+      showCards.removeChild(showCards.children[0]);
       showCards.appendChild(div);
       div.classList.remove(classActive);
       showCards.children[0].classList.add(classActive);
