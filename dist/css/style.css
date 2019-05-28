@@ -1268,7 +1268,7 @@ a:active {
   min-height: 341px;
   border-radius: 8px;
   background-color: #fff;
-  padding: 34px 40px 66px 40px;
+  padding: 34px 40px 50px 40px;
   margin-right: 32px;
   transition: .5s all
 }
@@ -1385,7 +1385,7 @@ a:active {
   border-radius: 8px;
   background-color: #fff;
   padding: 32px 40px 50px 40px;
-  transition: .5s all
+  transition: .5s all;
 }
 
 .feed__item-active hr {
@@ -2081,14 +2081,18 @@ a:active {
 
 .animate {
   position: relative;
+  /* padding-bottom: 0; */
   animation: width-card .5s ease;
   animation-fill-mode: forwards;
-  /* transition: .5s all */
+  transition: .5s all;
 }
-.out-animate {
+.show_slide {
   position: relative;
   animation: left .5s ease;
   animation-fill-mode: forwards;
+}
+.out-animate {
+  animation: opacity-item .5s ease;
 }
 @keyframes width-card {
   0% { width: 241px;
@@ -2109,10 +2113,14 @@ a:active {
 }
 
 @keyframes left {
-  0% { opacity: 1;
-       right: 0px; 
+  0% { right: 0px; 
   }
-100% {opacity: 0;
-      right: 600px; 
+100% { right: 600px; 
     }  
+}
+@keyframes opacity-item {
+  0% { opacity: 1; 
+  }
+100% {  opacity: 0; 
+    } 
 }

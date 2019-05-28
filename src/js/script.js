@@ -34,8 +34,8 @@ window.addEventListener('DOMContentLoaded', function () {
         valid = require('./modules/valid.js');
     
 
-    showUpSlider('.showup__content-card', '.slick-prev.showup__btn', '.slick-next.showup__btn', 'card-active', false);
-    showUpSlider('.modules__content-card', '.modules__info .slick-prev', '.modules__info .slick-next', 'card-active', true);//true);
+    showUpSlider('.showup__content-card', '.slick-prev.showup__btn', '.slick-next.showup__btn', 'card-active', false, false);
+    showUpSlider('.modules__content-card', '.modules__info .slick-prev', '.modules__info .slick-next', 'card-active', true, false);//true);
     showUpSlider('.feed__slider-cards', '.feed__info-btns .slick-prev', '.feed__info-btns .slick-next', 'feed__item-active', false, true);
     linkSlide();
     clickToShow();

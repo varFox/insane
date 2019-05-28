@@ -11580,24 +11580,28 @@ var showUpSlider = function showUpSlider(cards, prev, next, classActive, bul, an
   var nextSlide = function nextSlide() {
     var activeCard = showCards.querySelector(".".concat(classActive));
     var div = document.createElement('div');
-    div = activeCard; // if (animate) {
-    //   showCards.children[0].classList.remove('animate');
-    //   showCards.children[0].classList.add('out-animate');
-    //   showCards.children[1].classList.add('animate');
-    //   setTimeout(() => {
-    //     showCards.children[0].remove();
-    //     showCards.appendChild(div);
-    //     div.classList.remove(classActive);
-    //     showCards.children[0].classList.add(classActive);
-    //     showCards.lastElementChild.classList.remove('out-animate');
-    //   }, 500);
-    // } else {
+    div = activeCard;
 
-    showCards.removeChild(showCards.children[0]); // showCards.children[0].remove();
+    if (animate) {
+      showCards.children[0].classList.remove('animate');
+      showCards.children[0].classList.add('out-animate');
+      showCards.children[1].classList.add('animate');
+      showCards.classList.add('show_slide');
+      setTimeout(function () {
+        showCards.children[0].remove();
+        showCards.appendChild(div);
+        div.classList.remove(classActive);
+        showCards.children[0].classList.add(classActive);
+        showCards.lastElementChild.classList.remove('out-animate');
+        showCards.classList.remove('show_slide');
+      }, 500);
+    } else {
+      showCards.removeChild(showCards.children[0]); // showCards.children[0].remove();
 
-    showCards.appendChild(div);
-    div.classList.remove(classActive);
-    showCards.children[0].classList.add(classActive); // }
+      showCards.appendChild(div);
+      div.classList.remove(classActive);
+      showCards.children[0].classList.add(classActive);
+    }
   };
 
   if (bul) {
@@ -11766,8 +11770,8 @@ window.addEventListener('DOMContentLoaded', function () {
         form = __webpack_require__(/*! ./modules/form.js */ "./src/js/modules/form.js"),
         valid = __webpack_require__(/*! ./modules/valid.js */ "./src/js/modules/valid.js");
 
-    showUpSlider('.showup__content-card', '.slick-prev.showup__btn', '.slick-next.showup__btn', 'card-active', false);
-    showUpSlider('.modules__content-card', '.modules__info .slick-prev', '.modules__info .slick-next', 'card-active', true); //true);
+    showUpSlider('.showup__content-card', '.slick-prev.showup__btn', '.slick-next.showup__btn', 'card-active', false, false);
+    showUpSlider('.modules__content-card', '.modules__info .slick-prev', '.modules__info .slick-next', 'card-active', true, false); //true);
 
     showUpSlider('.feed__slider-cards', '.feed__info-btns .slick-prev', '.feed__info-btns .slick-next', 'feed__item-active', false, true);
     linkSlide();

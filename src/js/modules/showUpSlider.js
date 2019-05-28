@@ -4,9 +4,7 @@ const showUpSlider = (cards, prev, next, classActive, bul, animate) => {
     showBtnPrev = document.querySelector(prev),
     showBtnNext = document.querySelector(next);
 
-
   showBtnNext.addEventListener('click', () => {
-
     nextSlide();
   });
   showBtnPrev.addEventListener('click', () => {
@@ -24,26 +22,28 @@ const showUpSlider = (cards, prev, next, classActive, bul, animate) => {
     let activeCard = showCards.querySelector(`.${classActive}`);
     let div = document.createElement('div');
     div = activeCard;
-    // if (animate) {
-    //   showCards.children[0].classList.remove('animate');
-    //   showCards.children[0].classList.add('out-animate');
-    //   showCards.children[1].classList.add('animate');
-    //   setTimeout(() => {
-    //     showCards.children[0].remove();
-    //     showCards.appendChild(div);
-    //     div.classList.remove(classActive);
-    //     showCards.children[0].classList.add(classActive);
-    //     showCards.lastElementChild.classList.remove('out-animate');
-    //   }, 500);
+    if (animate) {
+      showCards.children[0].classList.remove('animate');
+      showCards.children[0].classList.add('out-animate');
+      showCards.children[1].classList.add('animate');
+      showCards.classList.add('show_slide');
+      setTimeout(() => {
+        showCards.children[0].remove();
+        showCards.appendChild(div);
+        div.classList.remove(classActive);
+        showCards.children[0].classList.add(classActive);
+        showCards.lastElementChild.classList.remove('out-animate');
+        showCards.classList.remove('show_slide');
+      }, 500);
 
-    // } else {
+    } else {
       showCards.removeChild(showCards.children[0]);
 
       // showCards.children[0].remove();
       showCards.appendChild(div);
       div.classList.remove(classActive);
       showCards.children[0].classList.add(classActive);
-    // }
+    }
 
   };
   if (bul) {
@@ -55,3 +55,4 @@ const showUpSlider = (cards, prev, next, classActive, bul, animate) => {
 };
 
 module.exports = showUpSlider;
+
