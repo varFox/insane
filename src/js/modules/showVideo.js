@@ -8,12 +8,12 @@ const showVideo = () => {
       if (event.target.classList.contains('play__circle') &&
         !event.target.classList.contains('closed') && modules[i + 1] &&
         modules[i + 1].querySelector('.closed')) {
-        let cont = event.target.innerHTML;
+        
         document.querySelector('.close').addEventListener('click', () => {
           if (modules[i + 1].querySelector('.closed')) {
-            modules[i + 1].querySelector('.closed').innerHTML = cont;
-            modules[i + 1].querySelector('.closed').classList.remove('closed');
-            modules[i + 1].style.opacity = '1';
+            let cont = event.target.parentElement.innerHTML;
+            modules[i + 1].querySelector('.play').innerHTML = cont;
+            modules[i + 1].style.cssText = 'filter: none; -webkit-filter: none; opacity: 1';
           }
         });
       }

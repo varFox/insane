@@ -11526,7 +11526,6 @@ module.exports = playVideo;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// export default function polyfill(window) {
 var ElementPrototype = window.Element.prototype;
 
 if (!Element.prototype.matches) {
@@ -11551,7 +11550,7 @@ if (!Element.prototype.closest) {
 
     return null;
   };
-} // }
+}
 
 /***/ }),
 
@@ -11625,12 +11624,11 @@ var showVideo = function showVideo() {
   var _loop = function _loop(i) {
     modules[i].addEventListener('click', function (event) {
       if (event.target.classList.contains('play__circle') && !event.target.classList.contains('closed') && modules[i + 1] && modules[i + 1].querySelector('.closed')) {
-        var cont = event.target.innerHTML;
         document.querySelector('.close').addEventListener('click', function () {
           if (modules[i + 1].querySelector('.closed')) {
-            modules[i + 1].querySelector('.closed').innerHTML = cont;
-            modules[i + 1].querySelector('.closed').classList.remove('closed');
-            modules[i + 1].style.opacity = '1';
+            var cont = event.target.parentElement.innerHTML;
+            modules[i + 1].querySelector('.play').innerHTML = cont;
+            modules[i + 1].style.cssText = 'filter: none; -webkit-filter: none; opacity: 1';
           }
         });
       }
